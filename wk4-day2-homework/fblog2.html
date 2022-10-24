@@ -70,6 +70,60 @@
             border: 2px solid rgba(83, 78, 58, 0.6);
             border-radius: 0.5em;
         }
+        section#blogposts ul {
+            position: relative;
+        }
+        #info_box {
+            position: absolute;
+            top: 25%;
+            left:30%;
+            width: 30%;
+            padding: 2em;
+            color:rgb(255, 255, 255,1);
+            border-radius: 1em;
+            background-color: rgba(0, 0, 0, 0.9);
+            /* visibility: hidden; */
+        }
+        #info_title {
+            font-size: 2em;
+            font-weight: bolder;
+            margin-bottom: 1em;
+        }
+        #info_foodie span, #info_bio span {
+            font-weight: bolder;
+            font-size: 1.15em;
+        }
+        #info_foodie, #info_bio {
+            margin-bottom: 1em;
+        }
+        #close_info {
+            text-transform: capitalize;
+            width: 45%;
+            text-align: center;
+            margin: 5em auto 0 auto;
+            font-weight: bold;
+            color:rgb(250, 242, 132)
+        }
+        .closeBtn:hover {
+            cursor:pointer;
+        }
+        .closeBtnP {
+            position: absolute;
+            right: 1.5em;
+            top:0;
+        }
+        .closeBtnP:hover {
+            transition: transform ease-in-out .2s;
+            transform: scale(1.5);
+        }
+        .closeBtnB {
+            width: 15%;
+            bottom: 2em;
+            position: absolute;
+            background-color: white;
+            border: none;
+            box-sizing: border-box;
+        }
         footer {
             position: absolute;
             bottom: 0;
@@ -105,11 +159,31 @@
             <span class="profile">
                 <img v-bind:src="post.profilepix" v-on:click="authorinfo(posts, post)">
             </span>
-            <span class="author">{{ post.name }}</span> — 
-            <span class="date">{{ post.date }}</span>
-            <span class="reply">{{ post.reply }}</span>
+            <span class="author">{{ post[0].name }}</span> — 
+            <span class="date">{{ post[0].date }}</span>
+            <span class="reply">{{ post[0].reply }}</span>
             <p>
-            {{ post.message }}
+            {{ post[0].paragraph }}
+            </p>
+
+            <span class="profile">
+                <img v-bind:src="post.profilepix" v-on:click="authorinfo(posts, post)">
+            </span>
+            <span class="author">{{ post[1].name }}</span> — 
+            <span class="date">{{ post[1].date }}</span>
+            <span class="reply">{{ post[1].reply }}</span>
+            <p>
+            {{ post[1].paragraph }}
+            </p>
+
+            <span class="profile">
+                <img v-bind:src="post.profilepix" v-on:click="authorinfo(posts, post)">
+            </span>
+            <span class="author">{{ post[2].name }}</span> — 
+            <span class="date">{{ post[2].date }}</span>
+            <span class="reply">{{ post[2].reply }}</span>
+            <p>
+            {{ post[2].paragraph }}
             </p>
         </li>
         <div id="info_box" v-for="post in posts" v-if="post.thisBox">
@@ -176,7 +250,7 @@
                     reply:" REPLY",
                     paragraph:"This recipe is dynamite! My partner usually won’t eat beans but he finished the whole pot (darn was hoping to have some for leftovers haha). This is crowd-pleaser that I am going to add to my regular recipe rotation. Thanks so much, Lisa!",
                     thisBox: false,
-                }
+                },
                 ],
                 styleobj : {
                     width: "300px",
@@ -190,8 +264,8 @@
                         posts[i].thisBox = false;
                         post.thisBox = true;
                     }
-                }
-                }
+                },
+                },
             }, 
             //Components
             Vue.component('headcomponent',{
@@ -206,7 +280,7 @@
             });
             var blgtitle = new Vue({
                 el: 'h2'
-            })
+            });
                 
                     
                 
